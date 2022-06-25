@@ -1,3 +1,6 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:dont_tv_app/constants.dart';
 import 'package:dont_tv_app/presentation/pages/home_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -19,6 +22,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         theme: ThemeData(
           primarySwatch: Colors.blue,
+          appBarTheme: AppBarTheme(
+            color: kBlackColor2,
+          ),
         ),
         home: const HomePage(),
       ),

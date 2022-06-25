@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:dont_tv_app/presentation/pages/menu_page.dart';
+import 'package:dont_tv_app/presentation/pages/setting_page.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:marquee/marquee.dart';
@@ -14,7 +16,7 @@ class HomePage extends StatelessWidget {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
-      backgroundColor: kBlackGreyColor,
+      backgroundColor: kBlackColor2,
       bottomNavigationBar: Container(
         width: screenWidth,
         height: screenHeight / 15,
@@ -70,13 +72,14 @@ class HomePage extends StatelessWidget {
                   Container(
                     height: 100,
                     width: double.infinity,
-                    color: Color(0xFF333333),
                     alignment: Alignment.center,
-                    child: Text(
-                      "Logo",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
+                    decoration: BoxDecoration(
+                      color: Colors.black,
+                    ),
+                    child: Image.asset(
+                      "assets/images/logo.png",
+                      width: screenWidth / 8,
+                      height: screenHeight / 8,
                     ),
                   ),
                   SizedBox(height: screenHeight / 60),
@@ -86,7 +89,12 @@ class HomePage extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(
                         onTap: () {
-                          print("I am called");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => MenuPage(),
+                            ),
+                          );
                         },
                         focusColor: Colors.blue,
                         child: ListTile(
@@ -145,9 +153,7 @@ class HomePage extends StatelessWidget {
                     child: Material(
                       color: Colors.transparent,
                       child: InkWell(
-                        onTap: () {
-                          print("I am called");
-                        },
+                        onTap: () {},
                         focusColor: Colors.blue,
                         child: SizedBox(
                           height: 50,
@@ -180,7 +186,12 @@ class HomePage extends StatelessWidget {
                       color: Colors.transparent,
                       child: InkWell(
                         onTap: () {
-                          print("I am called");
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => SettingPage(),
+                            ),
+                          );
                         },
                         focusColor: Colors.blue,
                         child: SizedBox(
@@ -245,82 +256,102 @@ class HomePage extends StatelessWidget {
           ),
           Expanded(
             flex: 9,
-            child: Column(
+            child: Stack(
               children: [
-                SizedBox(height: screenHeight / 2.8),
                 Container(
-                  height: 70,
-                  width: 180,
-                  color: Colors.yellow,
-                  alignment: Alignment.center,
-                  child: Text("Logo"),
-                ),
-                SizedBox(height: screenHeight / 15),
-                Text(
-                  "8C:EA:48:E0:AB:DF",
-                  style: TextStyle(
-                    color: kWhiteColor,
-                    fontSize: 30,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                SizedBox(height: screenHeight / 40),
-                Container(
-                  height: 35,
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 70),
-                  color: Colors.yellow,
-                  child: Marquee(
-                    text:
-                        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                  ),
-                ),
-                SizedBox(height: screenHeight / 10),
-                Container(
-                  height: 60,
-                  width: double.infinity,
-                  margin: EdgeInsets.symmetric(horizontal: 10),
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15),
-                  ),
-                  child: Row(
-                    children: [
-                      Container(
-                        height: 50,
-                        width: 50,
-                        // color: Colors.green,
-                        child: Icon(Icons.ac_unit),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        "assets/images/background.jpeg",
                       ),
-                      Container(
-                        height: 50,
-                        // color: Colors.orange,
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              "Welcome to the Dontv Drna Portal To get More Channels you need to put IPTV Portal",
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              "We do not offer, host or manager any IPTV streams. To get started,",
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              "Open SETTING menu to access your device information and manage portals.",
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
+                      fit: BoxFit.fill,
+                    ),
+                  ),
+                ),
+                Column(
+                  children: [
+                    SizedBox(height: screenHeight / 3.5),
+                    Container(
+                      height: 70,
+                      width: 180,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                        color: Colors.transparent,
+                        image: DecorationImage(
+                          image: AssetImage("assets/images/logo.png"),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+                    SizedBox(height: screenHeight / 15),
+                    Text(
+                      "8C:EA:48:E0:AB:DF",
+                      style: TextStyle(
+                        color: kWhiteColor,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: screenHeight / 40),
+                    Container(
+                      height: 35,
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(horizontal: 70),
+                      color: Colors.yellow,
+                      child: Marquee(
+                        text:
+                            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                      ),
+                    ),
+                    // SizedBox(height: screenHeight / 10),
+                    Spacer(),
+                    Container(
+                      height: 60,
+                      width: double.infinity,
+                      margin: EdgeInsets.symmetric(horizontal: 10),
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            height: 50,
+                            width: 50,
+                            // color: Colors.green,
+                            child: Icon(Icons.ac_unit),
+                          ),
+                          Container(
+                            height: 50,
+                            // color: Colors.orange,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Welcome to the Dontv Drna Portal To get More Channels you need to put IPTV Portal",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Text(
+                                  "We do not offer, host or manager any IPTV streams. To get started,",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                                Text(
+                                  "Open SETTING menu to access your device information and manage portals.",
+                                  style: TextStyle(
+                                    fontSize: 14,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    SizedBox(height: screenHeight / 80),
+                  ],
                 ),
               ],
             ),
